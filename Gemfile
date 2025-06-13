@@ -48,4 +48,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 8.0.0'
 end
 
+group :test do
+  gem 'factory_bot', '~> 6.4', '>= 6.4.6'
+end
+
 
