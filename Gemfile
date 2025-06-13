@@ -60,6 +60,8 @@ group :test do
   gem "factory_bot_rails", "~> 6.4"
   gem "faker", "~> 3.3"
   gem "shoulda-matchers", "~> 6.2"
+  gem "rspec-sidekiq", "~> 5.0"
+  gem "webmock", "~> 3.23"
 end
 
 
