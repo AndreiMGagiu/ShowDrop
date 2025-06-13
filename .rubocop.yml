@@ -1,10 +1,22 @@
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
+
 inherit_from: .rubocop_todo.yml
 
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+AllCops:
+  TargetRubyVersion: 3.3
+  SuggestExtensions: false
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+  NewCops: enable
+  Exclude:
+    - "db/schema.rb"
+    - "bin/**/*"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+
+Rails:
+  Enabled: true
+
+RSpec:
+  Enabled: true
