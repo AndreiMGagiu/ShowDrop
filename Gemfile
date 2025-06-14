@@ -53,6 +53,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 8.0.0'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec_rails', require: false
+  gem 'pry', '~> 0.15.0'
+
   
 end
 
