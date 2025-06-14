@@ -10,8 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 0) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_13_091851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "distributors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "country"
+    t.string "kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "releases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "episode_id", null: false
+    t.uuid "tv_show_id", null: false
+    t.uuid "distributor_id", null: false
+    t.string "episode_name"
+    t.date "airdate"
+    t.datetime "airstamp"
+    t.integer "runtime"
+    t.integer "season"
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distributor_id"], name: "index_releases_on_distributor_id"
+    t.index ["tv_show_id"], name: "index_releases_on_tv_show_id"
+  end
+
+  create_table "tv_shows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "provider_identifier", null: false
+    t.string "name", null: false
+    t.string "language", null: false
+    t.string "status"
+    t.float "rating"
+    t.text "summary"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "releases", "distributors"
+  add_foreign_key "releases", "tv_shows"
 end
