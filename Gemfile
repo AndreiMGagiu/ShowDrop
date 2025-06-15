@@ -20,6 +20,10 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem 'devise'
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -33,7 +37,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
+gem "rack-cors"
 
 gem 'httparty', '~> 0.21'
 
