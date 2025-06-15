@@ -37,6 +37,8 @@ gem "thruster", require: false
 
 gem 'httparty', '~> 0.21'
 
+gem 'pagy'
+
 # Background jobs
 gem 'sidekiq', '~> 7.2'
 
