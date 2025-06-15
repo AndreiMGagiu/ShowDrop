@@ -21,6 +21,10 @@ module TvMaze
     # @return [Hash] The original raw show hash.
     attr_reader :data
 
+    def premiered
+      Date.parse(data['premiered'])
+    end
+
     # @return [Integer] The unique ID of the show.
     def id
       data['id']

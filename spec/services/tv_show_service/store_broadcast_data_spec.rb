@@ -15,6 +15,7 @@ RSpec.describe TvShowService::StoreBroadcastData do
       'show' => {
         'id' => 999,
         'name' => 'Test Show',
+        'premiered' => '2013-06-03',
         'language' => 'English',
         'status' => 'Running',
         'rating' => { 'average' => 8.4 },
