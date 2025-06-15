@@ -9,7 +9,8 @@ module TvShowService
           status: show.status,
           rating: show.rating,
           summary: show.summary,
-          image: show.image
+          image: show.image,
+          premiered: show.premiered
         },
         unique_by: :provider_identifier
       )
