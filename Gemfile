@@ -20,6 +20,10 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem 'devise'
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -33,9 +37,17 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
+gem "rack-cors"
 
 gem 'httparty', '~> 0.21'
+
+gem 'pagy'
+
+# Background jobs
+gem 'sidekiq', '~> 7.2'
+
+# Cron jobs
+gem "sidekiq-cron"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -50,6 +62,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 8.0.0'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec_rails', require: false
+  gem 'pry', '~> 0.15.0'
+
   
 end
 
@@ -57,6 +71,8 @@ group :test do
   gem "factory_bot_rails", "~> 6.4"
   gem "faker", "~> 3.3"
   gem "shoulda-matchers", "~> 6.2"
+  gem "rspec-sidekiq", "~> 5.0"
+  gem "webmock", "~> 3.23"
 end
 
 

@@ -1,0 +1,5 @@
+import_tv_shows:
+  cron: "0 3 * * *"
+  class: "ImportTvShowsJob"
+  queue: import-tv-shows
+  description: "Daily import of upcoming TV shows from TVMaze"
