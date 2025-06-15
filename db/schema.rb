@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_13_091851) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_14_061404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_13_091851) do
     t.string "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_distributors_on_name", unique: true
   end
 
   create_table "releases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_13_091851) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["distributor_id"], name: "index_releases_on_distributor_id"
+    t.index ["episode_id"], name: "index_releases_on_episode_id", unique: true
     t.index ["tv_show_id"], name: "index_releases_on_tv_show_id"
   end
 
@@ -48,6 +50,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_13_091851) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider_identifier"], name: "index_tv_shows_on_provider_identifier", unique: true
   end
 
   add_foreign_key "releases", "distributors"
