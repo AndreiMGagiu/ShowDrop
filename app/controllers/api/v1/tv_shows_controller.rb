@@ -43,11 +43,8 @@ module Api
       # Retrieves a single TV show by its UUID.
       #
       # @return [JSON] Serialized TV show data
-      # @raise [ActiveRecord::RecordNotFound] if no TV show with given ID exists
       def show
         render json: TvShowsSerializer.new(tv_show).as_json, status: :ok
-      rescue ActiveRecord::RecordNotFound
-        render json: { error: 'TV show not found' }, status: :not_found
       end
 
       private
@@ -56,7 +53,7 @@ module Api
       #
       # @return [TvShow]
       def tv_show
-        @tv_show ||= filtered_scope.find_by!(id: params[:id])
+        @tv_show ||= filtered_scope.find(params[:id])
       end
 
       # Applies filtering to the base TV show scope using TvShowQuery
