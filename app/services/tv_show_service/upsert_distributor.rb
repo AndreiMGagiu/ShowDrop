@@ -28,8 +28,6 @@ module TvShowService
         },
         unique_by: %i[name country]
       )
-
-      Distributor.find_by(name: distributor.name)
     end
   end
 end

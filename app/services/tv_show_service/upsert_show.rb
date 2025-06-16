@@ -22,8 +22,6 @@ module TvShowService
         },
         unique_by: :provider_identifier
       )
-
-      TvShow.find_by(provider_identifier: show.id)
     end
   end
 end

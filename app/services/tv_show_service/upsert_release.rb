@@ -22,8 +22,8 @@ module TvShowService
       Release.upsert(
         {
           episode_id: episode.id,
-          tv_show_id: show.id,
-          distributor_id: distributor.id,
+          tv_show_id: show.first['id'],
+          distributor_id: distributor.first['id'],
           episode_name: episode.name,
           airdate: episode.airdate,
           airstamp: episode.airstamp,
