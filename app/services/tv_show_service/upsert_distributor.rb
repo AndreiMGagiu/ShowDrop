@@ -26,7 +26,7 @@ module TvShowService
           country: distributor.country,
           kind: distributor.kind
         },
-        unique_by: :name
+        unique_by: %i[name country]
       )
 
       Distributor.find_by(name: distributor.name)

@@ -49,7 +49,7 @@ RSpec.describe TvShowService::StoreBroadcastData do
     end
 
     context 'when Distributor already exists' do
-      before { create(:distributor, name: 'Test Network') }
+      before { create(:distributor, name: 'Test Network', country: 'USA') }
 
       it 'does not create a new Distributor' do
         expect { store_service.call }.not_to change(Distributor, :count)
