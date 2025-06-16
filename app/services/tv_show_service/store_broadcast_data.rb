@@ -1,22 +1,28 @@
 # frozen_string_literal: true
 
-# TvShowService::StoreBroadcastData is responsible for persisting a single
-# TVMaze episode's data into the application's database. It wraps the import
-# of a `TvShow`, its `Distributor`, and the corresponding `Release` inside
-# a single transaction.
-#
-# This service expects raw episode data (typically from the TVMaze API),
-# parses it via a `TvMaze::Episode` value object, and upserts the relevant
-# records using dedicated upsert services.
-#
-# Example:
-#   TvShowService::StoreBroadcastData.new(episode_hash).call
 module TvShowService
+  # Responsible for persisting a single TVMaze episode's data into the application's database.
+  #
+  # This class wraps the import of a `TvShow`, its `Distributor`, and the corresponding `Release`
+  # inside a single transaction.
+  #
+  # It expects raw episode data (typically from the TVMaze API), parses it into a `TvMaze::Episode`
+  # value object, and delegates persistence to upsert services.
+  #
+  # @example
+  #   TvShowService::StoreBroadcastData.new(episode_hash).call
+  #
+  # @see TvMaze::Episode
+  # @see TvShowService::UpsertShow
+  # @see TvShowService::UpsertDistributor
+  # @see TvShowService::UpsertRelease
   class StoreBroadcastData
     # @param episode_data [Hash] Raw episode data from TVMaze API.
     def initialize(episode_data)
       @episode = TvMaze::Episode.new(episode_data)
     end
+
+    attr_reader :episode
 
     # Executes the import process for a single episode.
     #
@@ -51,8 +57,5 @@ module TvShowService
     def upsert_distributor
       UpsertDistributor.call(episode.show.distributor)
     end
-
-    # @return [TvMaze::Episode] The wrapped episode value object.
-    attr_reader :episode
   end
 end

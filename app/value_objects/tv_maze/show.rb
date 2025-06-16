@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-# TvMaze::Show wraps a show hash from the TVMaze API response
-# and exposes normalized accessors for key attributes such as name, status,
-# language, rating, and associated distributor (network or web channel).
-#
-# This value object is used by `TvMaze::Episode` to expose its associated show.
-#
-# Example:
-#   show = TvMaze::Show.new(raw_hash)
-#   show.name        # => "Game of Thrones"
-#   show.language    # => "English"
-#   show.distributor # => <TvMaze::Distributor>
 module TvMaze
+  # TvMaze::Show wraps a show hash from the TVMaze API response
+  # and exposes normalized accessors for key attributes such as name, status,
+  # language, rating, and associated distributor (network or web channel).
+  #
+  # This value object is used by `TvMaze::Episode` to expose its associated show.
+  #
+  # Example:
+  #   show = TvMaze::Show.new(raw_hash)
+  #   show.name        # => "Game of Thrones"
+  #   show.language    # => "English"
+  #   show.distributor # => <TvMaze::Distributor>
   class Show
     # @param data [Hash] The raw show hash from the TVMaze API.
     def initialize(data)

@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-# TvMaze::Distributor wraps a distributor hash (TV network or web channel)
-# from the TVMaze API response and provides convenient accessors.
-#
-# This value object is used to encapsulate distributor data
-# such as name, country, and kind (e.g. 'network' or 'web_channel').
-#
-# Example:
-#   distributor = TvMaze::Distributor.new(raw_hash)
-#   distributor.name     # => "HBO"
-#   distributor.country  # => "USA"
-#   distributor.kind     # => "network"
 module TvMaze
+  # TvMaze::Distributor wraps a distributor hash (TV network or web channel)
+  # from the TVMaze API response and provides convenient accessors.
+  #
+  # This value object is used to encapsulate distributor data
+  # such as name, country, and kind (e.g. 'network' or 'web_channel').
+  #
+  # @example
+  #   distributor = TvMaze::Distributor.new(raw_hash)
+  #   distributor.name     # => "HBO"
+  #   distributor.country  # => "USA"
+  #   distributor.kind     # => "network"
   class Distributor
     # @param data [Hash] The raw distributor hash from the TVMaze API response.
     def initialize(data)

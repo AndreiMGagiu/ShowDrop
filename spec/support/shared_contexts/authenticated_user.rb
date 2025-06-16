@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context 'authenticated user' do
+RSpec.shared_context 'when user is authenticated' do
   let(:user) { create(:user, password: 'password123') }
 
   let(:auth_headers) do

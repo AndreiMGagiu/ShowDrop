@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-# TvMaze::Episode wraps a single episode hash from the TVMaze API response
-# and exposes parsed, normalized values for use in application logic.
-#
-# This value object acts as the gateway to episode details such as name,
-# airdate, and associated show metadata.
-#
-# Example:
-#   episode = TvMaze::Episode.new(raw_hash)
-#   episode.name       # => "Winter Is Coming"
-#   episode.airdate    # => #<Date: 2025-08-15>
-#   episode.show.name  # => "Game of Thrones"
 module TvMaze
+  # TvMaze::Episode wraps a single episode hash from the TVMaze API response
+  # and exposes parsed, normalized values for use in application logic.
+  #
+  # This value object acts as the gateway to episode details such as name,
+  # airdate, and associated show metadata.
+  #
+  # @example
+  #   episode = TvMaze::Episode.new(raw_hash)
+  #   episode.name       # => "Winter Is Coming"
+  #   episode.airdate    # => #<Date: 2025-08-15>
+  #   episode.show.name  # => "Game of Thrones"
   class Episode
     # @param data [Hash] The raw episode hash from the TVMaze API.
     def initialize(data)

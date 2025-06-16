@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::TvShowsController', type: :request do
-  include_context 'authenticated user'
+  include_context 'when user is authenticated'
 
   let(:unauth_error) do
     {

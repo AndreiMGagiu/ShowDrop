@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe "CurrentUserController", type: :request do
-  include_context 'authenticated user'
+  include_context 'when user is authenticated'
 
   describe "GET /current_user" do
     context 'when authenticated' do
