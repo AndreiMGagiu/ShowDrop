@@ -16,6 +16,7 @@ AllCops:
     - "node_modules/**/*"
     - "tmp/**/*"
     - "config/initializers/**"
+    - "app/models/**"
 
 Rails:
   Enabled: true
