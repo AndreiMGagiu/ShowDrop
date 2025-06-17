@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::API
   include Pagy::Backend
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from JWT::ExpiredSignature, with: :render_token_expired
