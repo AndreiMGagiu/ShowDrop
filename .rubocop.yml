@@ -11,9 +11,12 @@ AllCops:
   NewCops: enable
   Exclude:
     - "db/schema.rb"
+    - "db/**/*"
     - "bin/**/*"
     - "node_modules/**/*"
     - "tmp/**/*"
+    - "config/initializers/**"
+    - "app/models/**"
 
 Rails:
   Enabled: true
