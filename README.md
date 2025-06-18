@@ -11,6 +11,7 @@ Showdrop is a Ruby on Rails API-only application that aggregates upcoming TV sho
 - [System Dependencies](#system-dependencies)
 - [Database Creation](#database-creation)
 - [Database Design](#database-design)
+- [Analytical Queries Samples](#analytical-queries-samples)
 - [Testing Strategy](#testing-strategy)
 - [Authentication](#authentication)
 - [Sidekiq Background Jobs](#sidekiq-background-jobs)
@@ -87,6 +88,48 @@ Normalized structure: Distributors are separated into their own table to allow r
 Indexing on premiered, provider_identifier, and episode_id ensures the app can handle large volumes of data efficiently, especially as the import process scales to 90+ days of releases.
 
 Relational integrity: Foreign key constraints ensure no orphaned releases exist without associated shows or distributors.
+
+## Analytical Queries Samples
+### Top 5 Distributors by Upcoming Releases:
+```sql
+WITH upcoming_releases AS (
+    SELECT * FROM releases
+    WHERE airdate BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '90 days'
+  )
+  SELECT d.name AS distributor, COUNT(*) AS total_releases
+  FROM upcoming_releases ur
+  JOIN distributors d ON d.id = ur.distributor_id
+  GROUP BY d.name
+  ORDER BY total_releases DESC
+  LIMIT 5;
+```
+
+### Top-rated show per country
+```sql
+SELECT *
+FROM (
+  SELECT
+    s.name AS show_name,
+    s.rating,
+    d.country,
+    RANK() OVER (PARTITION BY d.country ORDER BY s.rating DESC) AS rank
+  FROM releases r
+  JOIN tv_shows s ON s.id = r.tv_show_id
+  JOIN distributors d ON d.id = r.distributor_id
+  WHERE s.rating IS NOT NULL
+) ranked
+WHERE rank = 1;
+```
+
+### Average Episode Runtime by Distributor
+```sql
+SELECT d.name AS distributor, ROUND(AVG(r.runtime), 2) AS avg_runtime_minutes
+FROM releases r
+JOIN distributors d ON d.id = r.distributor_id
+WHERE r.runtime IS NOT NULL
+GROUP BY d.name
+ORDER BY avg_runtime_minutes DESC;
+```
 
 ## Testing Strategy
 The application is covered with RSpec, using factories (FactoryBot), request specs for endpoints, and unit tests for service classes.
